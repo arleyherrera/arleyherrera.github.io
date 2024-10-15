@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felices 2 Meses, Mi Amor</title>
+    <title>Felices 3 Meses, Mi Amor</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@300;400;700&display=swap');
 
@@ -30,6 +31,8 @@
 
         h1, h2 {
             font-family: 'Dancing Script', cursive;
+            margin: 0;
+            padding: 0;
         }
 
         h1 {
@@ -43,9 +46,10 @@
         }
 
         p {
-            font-size: 1.2em;
+            font-size: 1.3em;
             line-height: 1.6;
             margin-bottom: 30px;
+            color: #555;
         }
 
         .heart {
@@ -63,12 +67,12 @@
         }
 
         .gallery img {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             animation: fadeIn 1s ease-in-out;
         }
@@ -79,27 +83,31 @@
 
         .countdown {
             text-align: center;
-            font-size: 1.5em;
+            font-size: 1.8em;
             margin-bottom: 50px;
             animation: slideInLeft 1s ease-in-out;
+            font-weight: bold;
         }
 
         .moments {
-            background-color: rgba(255,255,255,0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
-            padding: 20px;
+            padding: 30px;
             margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             animation: slideInRight 1s ease-in-out;
         }
 
         .moments ul {
             list-style-type: none;
             padding: 0;
+            font-size: 1.2em;
+            color: #444;
         }
 
         .moments li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+            margin-bottom: 15px;
+            padding-left: 25px;
             position: relative;
             opacity: 0;
             animation: fadeInUp 0.5s ease-in-out forwards;
@@ -110,12 +118,18 @@
             position: absolute;
             left: 0;
             color: #ff4b4b;
+            font-size: 1.5em;
         }
 
         .music-player {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             animation: fadeIn 2s ease-in-out;
+        }
+
+        .music-player audio {
+            margin-top: 20px;
+            width: 300px;
         }
 
         .floating-hearts {
@@ -135,39 +149,85 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-100px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); }
-            100% { transform: translateY(-100vh) scale(1); }
+            0% {
+                transform: translateY(100vh) scale(0);
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(1);
+            }
         }
 
         @media (max-width: 768px) {
@@ -178,11 +238,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
-            <h1>Felices 2 Meses, Mi Amor</h1>
-            <p>Dos meses juntos y cada día te quiero más. Gracias por llenar mi vida de alegría y amor. Eres lo mejor que me ha pasado.</p>
+            <h1>Felices 3 Meses, Mi Amor</h1>
+            <p>Tres meses a tu lado, y cada día descubro más razones para amarte. Gracias por hacer mi vida más especial. Lo eres todo en mi vida</p>
             <div class="heart">❤️</div>
         </header>
 
@@ -196,9 +257,12 @@
 
         <section class="gallery">
             <img src="tequiero1.jpeg" alt="Nuestra primera cita" onclick="openModal(this)">
-            <img src="tequiero3.jpeg" alt="" onclick="openModal(this)">
-            <img src="tequiero4.jpeg" alt="Nuestra primera aventura juntos" onclick="openModal(this)">
-            <img src="tequiero2.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
+            <img src="tequiero3.jpeg" alt="Nuestro primer viaje juntos" onclick="openModal(this)">
+            <img src="tequiero4.jpeg" alt="Nuestro día especial" onclick="openModal(this)">
+            <img src="tequiero5.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
+            <img src="tequiero6.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
+            <img src="tequiero7.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
+            <img src="tequiero8.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
         </section>
 
         <section class="countdown">
@@ -214,6 +278,11 @@
                 <li>Nuestro primer beso</li>
                 <li>Nuestra primera película en el cine</li>
                 <li>Nuestro primer "Te quiero"</li>
+                <li>Nuestro primer "Te amo"</li>
+                <li>Nuestra primera aventura juntos</li>
+                <li>Nuestras secciones de fotos en el gym </li>
+                <li>Nuestra primer desayuno juntos</li>
+                <li>Nuestra primer almuerzo juntos</li>
             </ul>
         </section>
     </div>
@@ -229,7 +298,7 @@
         // Cuenta regresiva
         const countDownDate = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
 
-        const x = setInterval(function() {
+        const x = setInterval(function () {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
@@ -238,8 +307,8 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " +
+                minutes + "m " + seconds + "s ";
 
             if (distance < 0) {
                 clearInterval(x);
@@ -263,7 +332,7 @@
         }
 
         const span = document.getElementsByClassName("close")[0];
-        span.onclick = function() { 
+        span.onclick = function () {
             document.getElementById("imageModal").style.display = "none";
         }
 
@@ -289,4 +358,5 @@
         });
     </script>
 </body>
+
 </html>

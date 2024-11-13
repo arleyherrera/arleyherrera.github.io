@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felices 3 Meses, Mi Amor</title>
+    <title>Felices 4 Meses, Mi Amor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display&family=Roboto:wght@300;400;700&display=swap');
 
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 60%, #c2e9fb 100%);
             color: #333;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+            transition: background-color 0.5s, color 0.5s;
         }
 
         .container {
@@ -31,25 +35,24 @@
 
         h1, h2 {
             font-family: 'Dancing Script', cursive;
-            margin: 0;
-            padding: 0;
+            color: #ff4b4b;
         }
 
         h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
+            font-size: 4em;
+            margin-bottom: 10px;
         }
 
         h2 {
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 15px;
         }
 
         p {
-            font-size: 1.3em;
+            font-size: 1.5em;
             line-height: 1.6;
             margin-bottom: 30px;
-            color: #555;
+            color: #444;
         }
 
         .heart {
@@ -57,6 +60,23 @@
             color: #ff4b4b;
             animation: pulse 1.5s infinite;
             display: inline-block;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .heart:hover::after {
+            content: "Click me 💌";
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #ff4b4b;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 1em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
         }
 
         .gallery {
@@ -70,15 +90,17 @@
             width: 250px;
             height: 250px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 25px;
             margin: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 1s ease-in-out;
+            border: 5px solid #ffb6c1;
         }
 
         .gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .countdown {
@@ -87,34 +109,36 @@
             margin-bottom: 50px;
             animation: slideInLeft 1s ease-in-out;
             font-weight: bold;
+            color: #0366d6;
         }
 
         .moments {
             background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
+            border-radius: 25px;
             padding: 30px;
             margin-bottom: 50px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             animation: slideInRight 1s ease-in-out;
         }
 
         .moments ul {
             list-style-type: none;
             padding: 0;
-            font-size: 1.2em;
+            font-size: 1.5em;
             color: #444;
         }
 
         .moments li {
             margin-bottom: 15px;
-            padding-left: 25px;
+            padding-left: 30px;
             position: relative;
             opacity: 0;
             animation: fadeInUp 0.5s ease-in-out forwards;
+            color: #ff6f91;
         }
 
         .moments li::before {
-            content: '❤';
+            content: '💖';
             position: absolute;
             left: 0;
             color: #ff4b4b;
@@ -129,7 +153,7 @@
 
         .music-player audio {
             margin-top: 20px;
-            width: 300px;
+            width: 350px;
         }
 
         .floating-hearts {
@@ -146,6 +170,96 @@
             position: absolute;
             font-size: 20px;
             animation: floatUp 4s linear infinite;
+        }
+
+        .form-message {
+            text-align: center;
+            margin-top: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .form-message textarea {
+            width: 100%;
+            height: 100px;
+            border-radius: 15px;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 2px solid #ff6f91;
+            margin-bottom: 15px;
+        }
+
+        .form-message button {
+            background-color: #ff6f91;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-message button:hover {
+            background-color: #ff4b4b;
+        }
+
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 60%;
+            max-height: 80%;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #ff6f91;
+        }
+
+        .theme-toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff6f91;
+            color: #fff;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle-button:hover {
+            background-color: #ff4b4b;
         }
 
         @keyframes fadeInDown {
@@ -176,7 +290,7 @@
             }
 
             50% {
-                transform: scale(1.1);
+                transform: scale(1.15);
             }
 
             100% {
@@ -235,16 +349,22 @@
                 width: 150px;
                 height: 150px;
             }
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 70%;
+            }
         }
     </style>
 </head>
 
 <body>
+  
     <div class="container">
         <header>
-            <h1>Felices 3 Meses, Mi Amor</h1>
-            <p>Tres meses a tu lado, y cada día descubro más razones para amarte. Gracias por hacer mi vida más especial. Lo eres todo en mi vida</p>
-            <div class="heart">❤️</div>
+            <h1>Felices 4 Meses, Mi Amor</h1>
+            <p>Cuatro meses contigo y sigo encontrando nuevas razones para amarte. Gracias por cada momento. Eres la luz de mi vida.</p>
+            <div class="heart" onclick="showSurpriseMessage()">❤️</div>
         </header>
 
         <section class="music-player">
@@ -260,9 +380,16 @@
             <img src="tequiero3.jpeg" alt="Nuestro primer viaje juntos" onclick="openModal(this)">
             <img src="tequiero4.jpeg" alt="Nuestro día especial" onclick="openModal(this)">
             <img src="tequiero5.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
-            <img src="tequiero6.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
-            <img src="tequiero7.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
-            <img src="tequiero8.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
+            <img src="tequiero6.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero7.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero8.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero9.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero10.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero11.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero12.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero13.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero14.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+            <img src="tequiero15.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
         </section>
 
         <section class="countdown">
@@ -280,15 +407,19 @@
                 <li>Nuestro primer "Te quiero"</li>
                 <li>Nuestro primer "Te amo"</li>
                 <li>Nuestra primera aventura juntos</li>
-                <li>Nuestras secciones de fotos en el gym </li>
-                <li>Nuestra primer desayuno juntos</li>
-                <li>Nuestra primer almuerzo juntos</li>
             </ul>
         </section>
+
+        <div class="form-message">
+            <h3>Déjame un mensaje secreto:</h3>
+            <textarea id="secretMessage" placeholder="Tu mensaje aquí..."></textarea>
+            <button onclick="showSecretMessage()">Enviar</button>
+            <p id="displaySecretMessage"></p>
+        </div>
     </div>
 
     <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
+        <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="modalImage">
     </div>
 
@@ -297,7 +428,6 @@
     <script>
         // Cuenta regresiva
         const countDownDate = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
-
         const x = setInterval(function () {
             const now = new Date().getTime();
             const distance = countDownDate - now;
@@ -316,23 +446,15 @@
             }
         }, 1000);
 
-        // Animación de aparición de los momentos especiales
-        const momentsList = document.getElementById('momentsList');
-        const moments = momentsList.getElementsByTagName('li');
-        for (let i = 0; i < moments.length; i++) {
-            moments[i].style.animationDelay = `${i * 0.2}s`;
-        }
-
         // Modal para las imágenes
         function openModal(img) {
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("modalImage");
-            modal.style.display = "block";
+            modal.style.display = "flex";
             modalImg.src = img.src;
         }
 
-        const span = document.getElementsByClassName("close")[0];
-        span.onclick = function () {
+        function closeModal() {
             document.getElementById("imageModal").style.display = "none";
         }
 
@@ -352,10 +474,28 @@
 
         setInterval(createHeart, 300);
 
-        // Reproducir música automáticamente
-        window.addEventListener('click', () => {
-            document.getElementById('background-music').play();
-        });
+        // Mostrar mensaje secreto
+        function showSecretMessage() {
+            const secretMessage = document.getElementById('secretMessage').value;
+            document.getElementById('displaySecretMessage').innerHTML = "Mensaje: " + secretMessage;
+        }
+
+        // Mostrar mensaje sorpresa al hacer clic en el corazón
+        function showSurpriseMessage() {
+            alert("¡Eres el mejor regalo que la vida me ha dado! 💖");
+        }
+
+        // Cambiar el tema de la página (Día/Noche)
+        function toggleTheme() {
+            const currentBg = document.body.style.backgroundColor;
+            if (currentBg === "rgb(50, 50, 50)") {
+                document.body.style.backgroundColor = "";
+                document.body.style.color = "";
+            } else {
+                document.body.style.backgroundColor = "#323232";
+                document.body.style.color = "#ffffff";
+            }
+        }
     </script>
 </body>
 

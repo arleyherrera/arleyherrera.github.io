@@ -4,262 +4,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Celebrando 4 meses de amor y felicidad juntos">
     <title>Felices 4 Meses, Mi Amor</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display&family=Roboto:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
 
-        body, html {
+        :root {
+            --primary-color: #ff6f91;
+            --secondary-color: #ff4b4b;
+            --text-color: #333;
+            --background-start: #ff9a9e;
+            --background-middle: #fad0c4;
+            --background-end: #c2e9fb;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #ff8fa3;
+            --secondary-color: #ff6b6b;
+            --text-color: #ffffff;
+            --background-start: #2a2a2a;
+            --background-middle: #3a3a3a;
+            --background-end: #4a4a4a;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Playfair Display', serif;
-            background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 60%, #c2e9fb 100%);
-            color: #333;
+            background: linear-gradient(120deg, var(--background-start) 0%, var(--background-middle) 60%, var(--background-end) 100%);
+            color: var(--text-color);
             overflow-x: hidden;
             scroll-behavior: smooth;
-            transition: background-color 0.5s, color 0.5s;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
 
         header {
             text-align: center;
             padding: 50px 0;
-            animation: fadeInDown 2s ease-in-out;
+            opacity: 0;
+            animation: fadeInDown 2s ease-in-out forwards;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-family: 'Dancing Script', cursive;
-            color: #ff4b4b;
+            color: var(--primary-color);
+            margin-bottom: 20px;
         }
 
-        h1 {
-            font-size: 4em;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
         p {
-            font-size: 1.5em;
+            font-size: clamp(1rem, 2vw, 1.5rem);
             line-height: 1.6;
             margin-bottom: 30px;
-            color: #444;
+            color: var(--text-color);
+        }
+
+        .heart-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform var(--transition-speed);
         }
 
         .heart {
-            font-size: 5em;
-            color: #ff4b4b;
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--primary-color);
             animation: pulse 1.5s infinite;
-            display: inline-block;
-            cursor: pointer;
-            position: relative;
         }
 
-        .heart:hover::after {
+        .heart-container:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-container::after {
             content: "Click me 💌";
             position: absolute;
             top: -30px;
             left: 50%;
-            transform: translateX(-50%);
-            background: #fff;
-            color: #ff4b4b;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 1em;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateX(-50%) scale(0);
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            opacity: 0;
+            transition: all var(--transition-speed);
             white-space: nowrap;
         }
 
+        .heart-container:hover::after {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+        }
+
         .gallery {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
             margin-bottom: 50px;
         }
 
-        .gallery img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
+        .gallery-item {
+            position: relative;
             border-radius: 25px;
-            margin: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeIn 1s ease-in-out;
-            border: 5px solid #ffb6c1;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform var(--transition-speed);
         }
 
-        .gallery img:hover {
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item:hover img {
             transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
         }
 
         .countdown {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
-            font-size: 1.8em;
-            margin-bottom: 50px;
-            animation: slideInLeft 1s ease-in-out;
+            margin: 50px 0;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .countdown-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+        }
+
+        .countdown-number {
+            font-size: 2rem;
             font-weight: bold;
-            color: #0366d6;
+            color: var(--primary-color);
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-transform: uppercase;
         }
 
         .moments {
-            background-color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 25px;
-            padding: 30px;
-            margin-bottom: 50px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            animation: slideInRight 1s ease-in-out;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transform: translateX(-100%);
+            animation: slideInRight 1s ease-in-out forwards;
         }
 
         .moments ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
-            font-size: 1.5em;
-            color: #444;
         }
 
         .moments li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transform: translateX(-50px);
             opacity: 0;
-            animation: fadeInUp 0.5s ease-in-out forwards;
-            color: #ff6f91;
-        }
-
-        .moments li::before {
-            content: '💖';
-            position: absolute;
-            left: 0;
-            color: #ff4b4b;
-            font-size: 1.5em;
+            animation: slideInLeft 0.5s ease-in-out forwards;
+            animation-delay: calc(var(--index) * 0.1s);
         }
 
         .music-player {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .music-player audio {
-            margin-top: 20px;
-            width: 350px;
-        }
-
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .floating-heart {
-            position: absolute;
-            font-size: 20px;
-            animation: floatUp 4s linear infinite;
-        }
-
-        .form-message {
-            text-align: center;
-            margin-top: 40px;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            margin: 40px auto;
+            padding: 30px;
+            margin: 50px 0;
+            text-align: center;
         }
 
-        .form-message textarea {
+        .custom-audio {
             width: 100%;
-            height: 100px;
-            border-radius: 15px;
-            padding: 10px;
-            font-size: 1.2em;
-            border: 2px solid #ff6f91;
-            margin-bottom: 15px;
+            max-width: 500px;
+            margin: 20px auto;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 20px;
+            box-shadow: 0 4px 15px var(--shadow-color);
         }
 
-        .form-message button {
-            background-color: #ff6f91;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-message button:hover {
-            background-color: #ff4b4b;
-        }
-
-        #imageModal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+        .audio-controls {
+            display: flex;
             align-items: center;
             justify-content: center;
+            gap: 20px;
+        }
+
+        .audio-btn {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: var(--white);
+            cursor: pointer;
+            transition: transform var(--transition-speed);
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0;
+            transition: width 0.1s linear;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            max-width: 60%;
-            max-height: 80%;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.5s ease-in-out;
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            animation: zoomIn 0.3s ease-out;
         }
 
-        .close {
+        .modal-close {
             position: absolute;
             top: 20px;
-            right: 35px;
-            color: #ffffff;
-            font-size: 40px;
-            font-weight: bold;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: transform var(--transition-speed);
         }
 
-        .close:hover {
-            color: #ff6f91;
+        .modal-close:hover {
+            transform: rotate(90deg);
         }
 
-        .theme-toggle-button {
+        .theme-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #ff6f91;
-            color: #fff;
+            background: var(--primary-color);
+            color: var(--white);
             border: none;
-            border-radius: 15px;
-            padding: 10px 20px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: transform var(--transition-speed);
+            z-index: 100;
         }
 
-        .theme-toggle-button:hover {
-            background-color: #ff4b4b;
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .message-form {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 50px 0;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .message-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            resize: vertical;
+            transition: border-color var(--transition-speed);
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform var(--transition-speed), background-color var(--transition-speed);
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
         @keyframes fadeInDown {
@@ -267,43 +389,23 @@
                 opacity: 0;
                 transform: translateY(-50px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.15);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
         }
 
         @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateX(-100px);
+                transform: translateX(-50px);
             }
-
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -311,192 +413,361 @@
         }
 
         @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
 
-        @keyframes fadeInUp {
+        @keyframes zoomIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: scale(0.8);
             }
-
             to {
                 opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0);
-            }
-
-            100% {
-                transform: translateY(-100vh) scale(1);
+                transform: scale(1);
             }
         }
 
         @media (max-width: 768px) {
-            .gallery img {
-                width: 150px;
-                height: 150px;
+            .container {
+                padding: 10px;
             }
 
-            .modal-content {
-                max-width: 90%;
-                max-height: 70%;
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .countdown-display {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .audio-controls {
+                flex-direction: column;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
 </head>
 
 <body>
-  
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="container">
         <header>
             <h1>Felices 4 Meses, Mi Amor</h1>
             <p>Cuatro meses contigo y sigo encontrando nuevas razones para amarte. Gracias por cada momento. Eres la luz de mi vida.</p>
-            <div class="heart" onclick="showSurpriseMessage()">❤️</div>
+            <div class="heart-container" onclick="showSurpriseMessage()">
+                <div class="heart">❤️</div>
+            </div>
         </header>
 
         <section class="music-player">
             <h2>Nuestra Canción</h2>
-            <audio id="background-music" controls loop>
-                <source src="tequiero.mp3" type="audio/mpeg">
-                Tu navegador no soporta el elemento de audio.
-            </audio>
+            <div class="custom-audio">
+                <div class="audio-controls">
+                    <button class="audio-btn" id="playBtn" aria-label="Reproducir">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="progress-container
+                    <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                </div>
+                <audio id="background-music" src="tequiero.mp3" preload="metadata"></audio>
+            </div>
         </section>
 
-        <section class="gallery">
-            <img src="tequiero1.jpeg" alt="Nuestra primera cita" onclick="openModal(this)">
-            <img src="tequiero3.jpeg" alt="Nuestro primer viaje juntos" onclick="openModal(this)">
-            <img src="tequiero4.jpeg" alt="Nuestro día especial" onclick="openModal(this)">
-            <img src="tequiero5.jpeg" alt="Nuestro lugar favorito" onclick="openModal(this)">
-            <img src="tequiero6.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero7.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero8.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero9.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero10.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero11.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero12.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero13.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero14.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
-            <img src="tequiero15.jpeg" alt="Nuestra aventura juntos" onclick="openModal(this)">
+        <section class="gallery" id="photoGallery">
+            <div class="gallery-item">
+                <img src="tequiero1.jpeg" alt="Nuestra primera cita" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero3.jpeg" alt="Nuestro primer viaje juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero4.jpeg" alt="Nuestro día especial" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero5.jpeg" alt="Nuestro lugar favorito" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero6.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero7.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero8.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero9.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero10.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero11.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero12.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero13.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero14.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="tequiero15.jpeg" alt="Nuestra aventura juntos" loading="lazy">
+            </div>
         </section>
 
         <section class="countdown">
             <h2>Cuenta regresiva para nuestro próximo mes juntos</h2>
-            <div id="countdown"></div>
+            <div class="countdown-display" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
         </section>
 
         <section class="moments">
             <h2>Nuestros Momentos Especiales</h2>
             <ul id="momentsList">
-                <li>Nuestra primera conversación</li>
-                <li>Nuestra primera cita</li>
-                <li>Nuestro primer beso</li>
-                <li>Nuestra primera película en el cine</li>
-                <li>Nuestro primer "Te quiero"</li>
-                <li>Nuestro primer "Te amo"</li>
-                <li>Nuestra primera aventura juntos</li>
+                <li style="--index: 0">Nuestra primera conversación</li>
+                <li style="--index: 1">Nuestra primera cita</li>
+                <li style="--index: 2">Nuestro primer beso</li>
+                <li style="--index: 3">Nuestra primera película en el cine</li>
+                <li style="--index: 4">Nuestro primer "Te quiero"</li>
+                <li style="--index: 5">Nuestro primer "Te amo"</li>
+                <li style="--index: 6">Nuestra primera aventura juntos</li>
             </ul>
         </section>
 
-        <div class="form-message">
+        <section class="message-form">
             <h3>Déjame un mensaje secreto:</h3>
-            <textarea id="secretMessage" placeholder="Tu mensaje aquí..."></textarea>
-            <button onclick="showSecretMessage()">Enviar</button>
-            <p id="displaySecretMessage"></p>
-        </div>
+            <textarea 
+                id="secretMessage" 
+                class="message-input" 
+                placeholder="Tu mensaje aquí..."
+                maxlength="500"
+            ></textarea>
+            <button class="submit-btn" onclick="showSecretMessage()">
+                <i class="fas fa-heart"></i> Enviar
+            </button>
+            <p id="displaySecretMessage" class="message-display"></p>
+        </section>
     </div>
 
     <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <div class="modal-close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+        </div>
+        <img class="modal-content" id="modalImage" alt="Imagen ampliada">
     </div>
 
-    <div class="floating-hearts"></div>
-
     <script>
-        // Cuenta regresiva
-        const countDownDate = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
-        const x = setInterval(function () {
+        // Gestión del reproductor de audio personalizado
+        const audio = document.getElementById('background-music');
+        const playBtn = document.getElementById('playBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.querySelector('.progress-container');
+        const currentTimeSpan = document.getElementById('currentTime');
+        const durationSpan = document.getElementById('duration');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        function updateProgress(e) {
+            const { duration, currentTime } = e.srcElement;
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            
+            currentTimeSpan.textContent = formatTime(currentTime);
+            durationSpan.textContent = formatTime(duration);
+        }
+
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        playBtn.addEventListener('click', togglePlay);
+        audio.addEventListener('timeupdate', updateProgress);
+        progressContainer.addEventListener('click', setProgress);
+        audio.addEventListener('ended', () => {
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            progressBar.style.width = '0%';
+        });
+
+        // Gestión de la cuenta regresiva
+        function updateCountdown() {
+            const nextMonth = new Date();
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            nextMonth.setDate(1);
+            nextMonth.setHours(0, 0, 0, 0);
+            
             const now = new Date().getTime();
-            const distance = countDownDate - now;
+            const distance = nextMonth - now;
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " +
-                minutes + "m " + seconds + "s ";
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "¡Es nuestro día!";
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Gestión de la galería y modal
+        const gallery = document.getElementById('photoGallery');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        gallery.addEventListener('click', (e) => {
+            const clickedItem = e.target.closest('.gallery-item');
+            if (clickedItem) {
+                const img = clickedItem.querySelector('img');
+                openModal(img.src);
             }
-        }, 1000);
+        });
 
-        // Modal para las imágenes
-        function openModal(img) {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("modalImage");
-            modal.style.display = "flex";
-            modalImg.src = img.src;
+        function openModal(imgSrc) {
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        // Corazones flotantes
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.querySelector('.floating-hearts').appendChild(heart);
+        // Cerrar modal con la tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
 
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-
-        setInterval(createHeart, 300);
-
-        // Mostrar mensaje secreto
-        function showSecretMessage() {
-            const secretMessage = document.getElementById('secretMessage').value;
-            document.getElementById('displaySecretMessage').innerHTML = "Mensaje: " + secretMessage;
-        }
-
-        // Mostrar mensaje sorpresa al hacer clic en el corazón
-        function showSurpriseMessage() {
-            alert("¡Eres el mejor regalo que la vida me ha dado! 💖");
-        }
-
-        // Cambiar el tema de la página (Día/Noche)
+        // Gestión del tema oscuro/claro
         function toggleTheme() {
-            const currentBg = document.body.style.backgroundColor;
-            if (currentBg === "rgb(50, 50, 50)") {
-                document.body.style.backgroundColor = "";
-                document.body.style.color = "";
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
             } else {
-                document.body.style.backgroundColor = "#323232";
-                document.body.style.color = "#ffffff";
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
+        }
+
+        // Recuperar tema guardado
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+
+        // Mensaje secreto
+        function showSecretMessage() {
+            const messageInput = document.getElementById('secretMessage');
+            const displayMessage = document.getElementById('displaySecretMessage');
+            
+            if (messageInput.value.trim() === '') {
+                displayMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Por favor, escribe un mensaje';
+                displayMessage.style.color = '#ff4b4b';
+                return;
+            }
+
+            displayMessage.innerHTML = `<i class="fas fa-heart"></i> ${messageInput.value}`;
+            displayMessage.style.color = 'var(--primary-color)';
+            messageInput.value = '';
+
+            // Animación simple
+            displayMessage.style.animation = 'fadeInDown 0.5s ease-out';
+        }
+
+        // Mensaje sorpresa
+        function showSurpriseMessage() {
+            const messages = [
+                "¡Eres el mejor regalo que la vida me ha dado! 💖",
+                "Cada día te amo más 💕",
+                "Contigo todo es mejor 💝",
+                "Eres mi felicidad 💗",
+                "Mi corazón late por ti 💓"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, 0.9);
+                padding: 20px 40px;
+                border-radius: 25px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                animation: fadeInDown 0.5s ease-out;
+                font-size: 1.2rem;
+                color: var(--primary-color);
+            `;
+            
+            toast.textContent = randomMessage;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.5s ease-out';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
         }
     </script>
 </body>
-
 </html>

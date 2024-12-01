@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Celebrando 4 meses de amor y felicidad juntos">
-    <title>Felices 4 Meses, Mi Amor</title>
+    <title> Mi Amor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
@@ -295,6 +295,16 @@
             backdrop-filter: blur(5px);
         }
 
+        #modalVideo {
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: #000;
+}
+
         .modal-content {
             max-width: 90%;
             max-height: 90vh;
@@ -302,6 +312,8 @@
             box-shadow: 0 4px 20px var(--shadow-color);
             animation: zoomIn 0.3s ease-out;
         }
+
+        
 
         .modal-close {
             position: absolute;
@@ -452,7 +464,160 @@
                 width: 40px;
                 height: 40px;
             }
+            #modalVideo {
+        width: 95vw;
+        max-height: 70vh;
+           }
         }
+        .modal-content {
+        max-width: 90%;
+        max-height: 90vh;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px var(--shadow-color);
+        animation: zoomIn 0.3s ease-out;
+        background: black; /* Fondo negro para el contenido del modal */
+    }
+
+    .modal-content video {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 20px;
+    }
+
+    .modal.video-modal .modal-content {
+        width: 80%; /* O el ancho que prefieras */
+        aspect-ratio: 16/9; /* Mantiene la proporción del video */
+    }
+
+    .gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+
+.gallery-item:hover video {
+    transform: scale(1.1);
+}
+
+.hearts-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .floating-heart {
+        position: absolute;
+        color: var(--primary-color);
+        opacity: 0.3;
+        animation: floatHeart 15s linear infinite;
+    }
+
+    @keyframes floatHeart {
+        0% {
+            transform: translateY(100vh) scale(0.5);
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateY(-100px) scale(1);
+            opacity: 0;
+        }
+    }
+
+    /* Tarjeta de memoria giratoria */
+    .memory-card {
+        perspective: 1000px;
+        width: 300px;
+        height: 200px;
+        margin: 20px auto;
+        cursor: pointer;
+    }
+
+    .memory-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .memory-card:hover .memory-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .memory-card-front, .memory-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .memory-card-front {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .memory-card-back {
+        background: var(--secondary-color);
+        color: white;
+        transform: rotateY(180deg);
+    }
+
+    /* Efecto de lluvia de confeti */
+    .confetti {
+        position: fixed;
+        top: -10px;
+        width: 10px;
+        height: 10px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    @keyframes confettiFall {
+        0% {
+            opacity: 1;
+            transform: translateY(0) rotateZ(0deg);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(100vh) rotateZ(360deg);
+        }
+    }
+
+    /* Botón de carta de amor */
+    .love-letter-btn {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        margin: 20px auto;
+        display: block;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .love-letter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 111, 145, 0.4);
+    }
+
+   
+
     </style>
 </head>
 
@@ -463,7 +628,7 @@
 
     <div class="container">
         <header>
-            <h1>Felices 4 Meses, Mi Amor</h1>
+            <h1>Proximamente ....., Mi Amor</h1>
             <p>Cuatro meses contigo y sigo encontrando nuevas razones para amarte. Gracias por cada momento. Eres la luz de mi vida.</p>
             <div class="heart-container" onclick="showSurpriseMessage()">
                 <div class="heart">❤️</div>
@@ -529,6 +694,85 @@
             <div class="gallery-item">
                 <img src="tequiero15.jpeg" alt="Nuestra aventura juntos" loading="lazy">
             </div>
+            
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa1.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa2.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa3.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa4.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa5.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa6.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa7.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa8.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa9.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa10.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa11.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="gallery-item video-item">
+                <video class="gallery-video" preload="metadata">
+                    <source src="mipreciosa12.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
         </section>
 
         <section class="countdown">
@@ -581,11 +825,32 @@
         </section>
     </div>
 
+    <div class="hearts-bg" id="heartsBg"></div>
+    <section class="memory-card">
+        <div class="memory-card-inner">
+            <div class="memory-card-front">
+                <h3>Un recuerdo especial</h3>
+                <p>Pasa el mouse por encima ❤️</p>
+            </div>
+            <div class="memory-card-back">
+                <p>Cada momento contigo es un tesoro que guardo en mi corazón</p>
+            </div>
+        </div>
+    </section>
+    
+    <button class="love-letter-btn" onclick="showLoveLetter()">
+        <i class="fas fa-envelope-heart"></i> Abrir carta de amor
+    </button>
+
     <div id="imageModal" class="modal">
         <div class="modal-close" onclick="closeModal()">
             <i class="fas fa-times"></i>
         </div>
         <img class="modal-content" id="modalImage" alt="Imagen ampliada">
+        <video class="modal-content" id="modalVideo" controls style="display: none;">
+            <source src="" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
     </div>
 
     <script>
@@ -665,25 +930,51 @@
         const gallery = document.getElementById('photoGallery');
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
+        const modalVideo = document.getElementById('modalVideo');
 
         gallery.addEventListener('click', (e) => {
             const clickedItem = e.target.closest('.gallery-item');
-            if (clickedItem) {
+            if (!clickedItem) return;
+
+            if (clickedItem.classList.contains('video-item')) {
+                const video = clickedItem.querySelector('video');
+                openVideoModal(video.querySelector('source').src);
+            } else {
                 const img = clickedItem.querySelector('img');
-                openModal(img.src);
+                if (img) openImageModal(img.src);
             }
         });
+        
+        function openImageModal(imgSrc) {
+    modal.style.display = 'flex';
+    modal.classList.remove('video-modal'); // Removemos la clase de video si existe
+    modalImg.style.display = 'block';
+    modalVideo.style.display = 'none';
+    modalImg.src = imgSrc;
+    modalImg.style.maxWidth = '90%';
+    modalImg.style.maxHeight = '90vh';
+    modalImg.style.objectFit = 'contain';
+    document.body.style.overflow = 'hidden';
+     }
 
-        function openModal(imgSrc) {
-            modal.style.display = 'flex';
-            modalImg.src = imgSrc;
-            document.body.style.overflow = 'hidden';
-        }
+   function openVideoModal(videoSrc) {
+    modal.style.display = 'flex';
+    modal.classList.add('video-modal');
+    modalVideo.style.display = 'block';
+    modalImg.style.display = 'none';
+    modalVideo.querySelector('source').src = videoSrc;
+    modalVideo.load();
+    document.body.style.overflow = 'hidden';
+  }
 
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.classList.remove('video-modal');
+    document.body.style.overflow = 'auto';
+    if (modalVideo) {
+        modalVideo.pause();
+    }
+  } 
 
         // Cerrar modal con la tecla Escape
         document.addEventListener('keydown', (e) => {
@@ -768,6 +1059,103 @@
                 setTimeout(() => toast.remove(), 500);
             }, 3000);
         }
+
+        function createFloatingHearts() {
+        const heartsBg = document.getElementById('heartsBg');
+        const hearts = ['❤️', '💖', '💕', '💗', '💓'];
+        
+        setInterval(() => {
+            const heart = document.createElement('span');
+            heart.className = 'floating-heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            
+            heartsBg.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 15000);
+        }, 3000);
+    }
+
+    // Efecto de confeti
+    function createConfetti() {
+        const colors = ['#ff6f91', '#ff4b4b', '#ffd700', '#ff9a9e', '#c2e9fb'];
+        
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+            
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 5000);
+        }
+    }
+
+    // Mostrar carta de amor
+    function showLoveLetter() {
+        const letterContent = `
+            <div style="text-align: center; padding: 20px;">
+                <h3 style="color: var(--primary-color);">Mi amor...</h3>
+                <p style="margin: 20px 0;">
+                    Cada día a tu lado es una nueva aventura llena de amor y felicidad.
+                    Gracias por ser exactamente quien eres y por hacer mi vida más hermosa.
+                </p>
+                <p style="margin: 20px 0;">
+                    Te amo más que ayer y menos que mañana ❤️
+                </p>
+            </div>
+        `;
+        
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 80%;
+            animation: scaleIn 0.3s forwards;
+        `;
+        
+        modal.innerHTML = letterContent;
+        document.body.appendChild(modal);
+        
+        createConfetti();
+        
+        setTimeout(() => {
+            modal.style.animation = 'scaleOut 0.3s forwards';
+            setTimeout(() => modal.remove(), 300);
+        }, 5000);
+    }
+
+    // Iniciar efectos al cargar la página
+    window.addEventListener('load', () => {
+        createFloatingHearts();
+    });
+
+    // Agregar nueva animación para la carta
+    const styleSheet = document.styleSheets[0];
+    styleSheet.insertRule(`
+        @keyframes scaleIn {
+            from { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+    `, styleSheet.cssRules.length);
+    
+    styleSheet.insertRule(`
+        @keyframes scaleOut {
+            from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            to { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+        }
+    `, styleSheet.cssRules.length);
     </script>
 </body>
 </html>
